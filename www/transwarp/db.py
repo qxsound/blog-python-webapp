@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 
-import time, uuid, threading, logging
+import time, uuid, threading, logging, functools
 
 # 数据库引擎对象
 class _Engine(object):
@@ -112,7 +112,7 @@ class _DbCtx(threading.local):
 
 	def cleanup(self):
 		self.connection.cleanup()
-		self.transactions = None
+		self.connection = None
 
 	def cursor(self):
 		return self.connection.cursor()
@@ -256,8 +256,8 @@ def _update(sql, *args):
 			cursor.close()		
 
 def insert(table, **kw):
-	cols, args = zip(**kw.iteritems())
-	sql = 'insert into "%s" (%s) values (%s)' % (table, ','.join(['"%s"' % col for col in cols]), ','.join(['?' for i in range(len(cols))]))
+	cols, args = zip(*kw.iteritems())  #特别注意 是一个*（可变个数个键值对）  
+	sql = 'insert into `%s` (%s) values (%s)' % (table, ','.join(['`%s`' % col for col in cols]), ','.join(['?' for i in range(len(cols))]))
 	return _update(sql, *args)
 
 
