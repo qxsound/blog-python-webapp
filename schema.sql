@@ -49,4 +49,6 @@ create table comments (
 -- email / password:
 -- admin@example.com / password
 
-insert into users (`id`, `email`, `password`, `admin`, `name`, `created_at`) values ('0010018336417540987fff4508f43fbaed718e263442526000', 'admin@example.com', '5f4dcc3b5aa765d61d8327deb882cf99', 1, 'Administrator', 1402909113.628);
+insert into users (`id`, `email`, `password`, `admin`, `name`, `image`, `created_at`) values ('0010018336417540987fff4508f43fbaed718e263442526000', 'admin@example.com', '5f4dcc3b5aa765d61d8327deb882cf99', 1, 'Administrator', 'about:{}', 1402909113.628);
+insert into users (`id`, `email`, `password`, `admin`, `name`, `image`, `created_at`) values ('1010018336417540987fff4508f43fbaed718e263442526000', 'Jon@example.com', '5f4dcc3b5aa765d61d8327deb882cf99', 1, 'Administrator', 'about:{}', 1402909113.628);
+insert into users (`id`, `email`, `password`, `admin`, `name`, `image`, `created_at`) values ('2010018336417540987fff4508f43fbaed718e263442526000', 'Jason@example.com', '5f4dcc3b5aa765d61d8327deb882cf99', 1, 'Administrator', 'about:{}', 1402909113.628);

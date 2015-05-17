@@ -8,7 +8,7 @@ configs = {
         'user': 'root',
         'password': 'root',
         'database': 'awesomeblog',
-    }
+    },
     'session': {
         'secret': 'AwEsOmEbLoG'
     }
