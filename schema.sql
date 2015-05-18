@@ -2,7 +2,7 @@
 
 drop database if exists awesomeblog;
 
-create databse awesomeblog;
+create database awesomeblog;
 
 use awesomeblog;
 
