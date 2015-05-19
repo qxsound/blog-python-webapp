@@ -1,17 +1,14 @@
-# !usr/bin/env python
+# !/usr/bin/env python
 # -*- coding: utf8 -*-
 
 import logging; logging.basicConfig(level=logging.INFO)
 import os
+from datetime import datetime
 
 from transwarp import db
 from transwarp.web import WSGIApplication, Jinja2TemplateEngine
 
 from config import configs
-
-db.create_engine(**configs.db)
-
-wsgi = WSGIApplication(os.path.dirname(os.path.abspath(__file__)))
 
 def datetime_filter(t):
     import time
@@ -26,6 +23,11 @@ def datetime_filter(t):
         return u'%s天前' % (delta // 86400)
     dt = datetime.fromtimestamp(t)
     return u'%s年%s月%s日' %(dt.year, dt.month, dt.day)
+
+db.create_engine(**configs.db)
+
+wsgi = WSGIApplication(os.path.dirname(os.path.abspath(__file__)))
+
 
 template_engine = Jinja2TemplateEngine(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates'))
 template_engine.add_filter('datetime', datetime_filter)
