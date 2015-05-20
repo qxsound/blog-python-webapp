@@ -65,7 +65,7 @@ def manage_interceptor(next):
     user = ctx.request.user
     if user and user.admin:
         return next()
-    raise seeother('/sigin')
+    raise seeother('/signin')
 
 @view('blogs.html')
 @get('/')
@@ -133,6 +133,29 @@ def register_user():
     cookie = make_signed_cookie(user.id, user.password, None)
     ctx.response.set_cookie(_COOKIE_NAME, cookie)
     return user
+
+@api
+@post('/api/blogs')
+def api_create_blog():
+    i = ctx.request.input(name='', summary='', content='')
+    name = i.name.strip()
+    summary = i.summary.strip()
+    content = i.content.strip()
+    if not name:
+        raise APIValueError('name', 'name cannot be empty')
+    if not summary:
+        raise APIValueError('summary', 'summary cannot be empty')
+    if not content:
+        raise APIValueError('content', 'content cannot be empty')
+    user = ctx.request.user
+    blog = Blog(user_id=user.id, user_name=user.name, name=name, summary=summary, content=content)
+    blog.insert()
+    return blog
+
+@view('manage_blog_edit.html')
+@get('/manage/blogs/create')
+def manage_blog_create():
+    return dict(id=None, action='/api/blogs', redirect='/manage/blogs', user=ctx.request.user)
 
 @view('register.html')
 @get('/register')

@@ -33,7 +33,7 @@ db.create_engine(user='root', password='root', database='awesomeblog')
 
 # summary = '在华为手机产品中，P系列一直定位于华为手机中的高端产品。2014年华为P7的推出经过了一年的市场论证，代表着国产机高端水平的P7在销量和用户认可度方面取得了一个不错的成绩。而一年后的今天，作为P7的后续机型华为P8在P7的基础上进行了全方面的升级，P8的体验到底怎样？P8还能否再续P7的成功传奇，下面我们就对它进行一个全方面的评测，一同来看它到底表现如何？'
 # content = ''
-# name = 'Huawei'
+# name = 'Huawei':
 # user_name = 'Administrator'
 # b = Blog(name=name, user_name=user_name, content=content, summary=summary)
 # b.insert()
