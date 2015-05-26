@@ -1,5 +1,10 @@
 {% extends '__base__.html' %}
 {% block title %} 日志 {% endblock %}
+{% block beforehead %}
+<script>
+</script>
+{% endblock %}
+
 {% block content %}
 	<div class="uk-width-medium-3-4">
 	{% for blog in blogs%}
@@ -11,6 +16,19 @@
 		</article>
 		<hr class="uk-article-divider">
 	{% endfor %}
+		<ul class="uk-pagination">
+		{% if page.has_previous %}
+			<li><a href="/?page={{ page.page_index - 1 }}"><i class="uk-icon-angle-double-left"></i></a></li>
+		{% else %}
+			<li class="uk-disabled"><span><i class="uk-icon-angle-double-left"></i></span></li>
+		{% endif %}
+			<li class="uk-active"><span>{{ page.page_index }}</span></li>
+		{% if page.has_next %}
+			<li><a href="/?page={{ page.page_index + 1 }}"><i class="uk-icon-angle-double-right"></i></a></li>
+		{% else %}
+			<li class="uk-disabled"><span><i class="uk-icon-angle-double-right"></i></span></li>
+		{% endif %}
+		</ul>
 	</div>
 
 	<div class="uk-width-medium-1-4">
